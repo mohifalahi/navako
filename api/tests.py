@@ -22,8 +22,8 @@ class PredictviewTest(TestCase):
         response = self.client.post(reverse('predict'), data={"text": "سلام"})
         json_response = response.json()
         self.assertEqual(response.status_code, 200)
-        label = json_response['prediction'][0]['label']
-        score = json_response['prediction'][0]['score']
+        label = json_response[0]['label']
+        score = json_response[0]['score']
         self.assertIn(label, ['recommended', 'no_idea', 'not_recommended'])
         self.assertLess(score, 1)
 
@@ -31,8 +31,8 @@ class PredictviewTest(TestCase):
         response = self.client.post(reverse('predict'), data={"text": "عاشقتم"})
         json_response = response.json()
         self.assertEqual(response.status_code, 200)
-        label = json_response['prediction'][0]['label']
-        score = json_response['prediction'][0]['score']
+        label = json_response[0]['label']
+        score = json_response[0]['score']
         self.assertEqual(label, "recommended")
         self.assertLess(score, 1)
 
@@ -40,8 +40,8 @@ class PredictviewTest(TestCase):
         response = self.client.post(reverse('predict'), data={"text": "متنفرم"})
         json_response = response.json()
         self.assertEqual(response.status_code, 200)
-        label = json_response['prediction'][0]['label']
-        score = json_response['prediction'][0]['score']
+        label = json_response[0]['label']
+        score = json_response[0]['score']
         self.assertEqual(label, "not_recommended")
         self.assertLess(score, 1)
 
@@ -49,8 +49,8 @@ class PredictviewTest(TestCase):
         response = self.client.post(reverse('predict'), data={"text": "خوشحالم"})
         json_response = response.json()
         self.assertEqual(response.status_code, 200)
-        label = json_response['prediction'][0]['label']
-        score = json_response['prediction'][0]['score']
+        label = json_response[0]['label']
+        score = json_response[0]['score']
         self.assertEqual(label, "recommended")
         self.assertLess(score, 1)
 
@@ -58,8 +58,8 @@ class PredictviewTest(TestCase):
         response = self.client.post(reverse('predict'), data={"text": "غمگینم"})
         json_response = response.json()
         self.assertEqual(response.status_code, 200)
-        label = json_response['prediction'][0]['label']
-        score = json_response['prediction'][0]['score']
+        label = json_response[0]['label']
+        score = json_response[0]['score']
         self.assertEqual(label, "not_recommended")
         self.assertLess(score, 1)
 
