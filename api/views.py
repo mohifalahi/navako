@@ -8,6 +8,7 @@ from .apps import ApiConfig
 
 class HealthCheckAPIView(APIView):
     """A view to check the api application being up and running"""
+
     def get(self, request):
         try:
             return JsonResponse({"status": "ok"}, status=status.HTTP_200_OK)
@@ -17,10 +18,13 @@ class HealthCheckAPIView(APIView):
 
 class PredictAPIView(APIView):
     """A view to get a text and predict the positive or negative emotions according the Persian Bert model"""
+
     def post(self, request):
-        text = request.data.get('text')
+        text = request.data.get("text")
         if not text:
-            return JsonResponse({"detail": "you should provide a text"}, status=status.HTTP_400_BAD_REQUEST)
+            return JsonResponse(
+                {"detail": "you should provide a text"},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
         results = ApiConfig.pipe.predict(text)
         return Response(results, status=status.HTTP_200_OK)
-        

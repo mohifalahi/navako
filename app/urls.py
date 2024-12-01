@@ -12,12 +12,13 @@ urlpatterns = [
         ),
         name="swagger-ui",
     ),
-    path('openapi', get_schema_view(
-        title="Navako",
-        description="API for all things …",
-        version="1.0.0"
-    ), name='openapi-schema'),
-
-    path('admin/', admin.site.urls),
-    path('api/', include('api.urls')),
+    path(
+        "openapi",
+        get_schema_view(
+            title="Navako", description="API for all things …", version="1.0.0"
+        ),
+        name="openapi-schema",
+    ),
+    path("admin/", admin.site.urls),
+    path("api/", include("api.urls")),
 ]
