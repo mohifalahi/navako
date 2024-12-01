@@ -35,9 +35,7 @@ You can interact with the APIs using both browser and postman collection provide
 
 To check "health" view, browse this url: "http://127.0.0.1:8000/api/health/". If the server is up and running, it should return a json like {"status": "ok"}
 
-To check "predict" view, browse this url: "http://127.0.0.1:8000/api/predict/". You should pass this json to it, data={"text": "یک متن دلخواه"},
-
-It should return a json like {"prediction": [{"label": "recommended", "score": 0.9261903762817383}]}
+To check "predict" view, browse this url: "http://127.0.0.1:8000/api/predict/". You should pass this json to it, {"text": "یک متن دلخواه"}, it should return a json like [{"label": "recommended", "score": 0.9261903762817383}]
 
 
 
