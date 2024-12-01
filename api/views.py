@@ -9,20 +9,18 @@ from .apps import ApiConfig
 class HealthCheckAPIView(APIView):
     """A view to check the api application being up and running"""
     def get(self, request):
-        if request.method == 'GET':
-            try:
-                return JsonResponse({"status": "ok"}, status=status.HTTP_200_OK)
-            except Exception as e:
-                return JsonResponse({"status": "error", "message": str(e)}, status=500)
-        return JsonResponse({"detail": "method not allowed"}, status=status.HTTP_405_METHOD_NOT_ALLOWED)
+        try:
+            return JsonResponse({"status": "ok"}, status=status.HTTP_200_OK)
+        except Exception as e:
+            return JsonResponse({"status": "error", "message": str(e)}, status=500)
 
 
 class PredictAPIView(APIView):
     """A view to get a text and predict the positive or negative emotions according the Persian Bert model"""
     def post(self, request):
-        if request.method == 'POST':
-            text =  request.data.get('text')
-            results = ApiConfig.pipe.predict(text)
-            return JsonResponse({"prediction": results}, status=status.HTTP_200_OK)
-        return JsonResponse({"detail": "method not allowed"}, status=status.HTTP_405_METHOD_NOT_ALLOWED)
+        text = request.data.get('text')
+        if not text:
+            return JsonResponse({"detail": "you should provide a text"}, status=status.HTTP_400_BAD_REQUEST)
+        results = ApiConfig.pipe.predict(text)
+        return Response(results, status=status.HTTP_200_OK)
         
