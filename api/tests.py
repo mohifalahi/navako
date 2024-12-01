@@ -68,3 +68,9 @@ class PredictviewTest(TestCase):
         json_response = response.json()
         self.assertEqual(response.status_code, 405)
         self.assertEqual(json_response['detail'], "Method \"GET\" not allowed.")
+
+    def test_predict_fail_no_input(self):
+        response = self.client.post(reverse('predict'), data={})
+        json_response = response.json()
+        self.assertEqual(response.status_code, 400)
+        self.assertEqual(json_response['detail'], "you should provide a text")
