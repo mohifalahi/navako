@@ -16,6 +16,7 @@ grpcio==1.68.0
 h5py==3.12.1
 huggingface-hub==0.26.3
 idna==3.10
+inflection==0.5.1
 isort==5.13.2
 libclang==18.1.1
 Markdown==3.7
@@ -51,6 +52,7 @@ tqdm==4.67.1
 transformers==4.46.3
 typing_extensions==4.12.2
 tzdata==2024.2
+uritemplate==4.1.1
 urllib3==2.2.3
 virtualenv==20.27.1
 Werkzeug==3.1.3
